@@ -19,6 +19,12 @@ class FoldLeftTest extends FunSuite {
     assert(FoldLeft.product(List(1, 2, 3, 4, 5)) == 120)
   }
 
+  test("should return factorial for a number") {
+    assert(FoldLeft.factorial(0) == 1)
+    assert(FoldLeft.factorial(1) == 1)
+    assert(FoldLeft.factorial(5) == 120)
+  }
+
   test("should return number of elements in the list") {
     assert(FoldLeft.count(Nil) == 0)
     assert(FoldLeft.count(List(9)) == 1)

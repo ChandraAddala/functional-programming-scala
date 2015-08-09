@@ -60,4 +60,26 @@ object BasicLoop {
     input.sum
   }
 
+
+  /**
+   *
+   * Tail recursive factorial
+   *
+   * @param n
+   * @return
+   */
+  def factorial(n: Int): Int = {
+
+    @tailrec
+    def loop(accumulator: Int, currentValue: Int): Int = {
+      if (currentValue <= 1) {
+        return accumulator
+      }
+
+      loop(accumulator * currentValue, currentValue - 1)
+    }
+    
+    loop(1, n)
+  }
+
 }

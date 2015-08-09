@@ -38,6 +38,18 @@ object FoldLeft {
     //input.foldLeft(0)(_ * _)
   }
 
+
+  /**
+   * Gets the factoral for a given number
+    * @param input
+   * @return
+   */
+  def factorial(input: Int): Int = {
+    (1 to input).foldLeft(1)((acc, element) => {
+      acc * element
+    })
+  }
+
   /**
    * Count the number of items on the list
    *
@@ -77,6 +89,8 @@ object FoldLeft {
     //we could actually use input.last
     input.foldLeft(input.head)((acc, element) => element)
   }
+
+
 
   /**
    * Gets the last but one element on the list.
