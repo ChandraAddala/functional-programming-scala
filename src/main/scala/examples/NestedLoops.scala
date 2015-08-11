@@ -109,40 +109,51 @@ object NestedLoops {
    * ( 1 2 4 5 8 ) \to ( 1 2 4 5 8 )
    * ( 1 2 4 5 8 ) \to ( 1 2 4 5 8 )
    *
+   * This algorithm can be further improved by stopping when no swapping has been
+   * performed during a bubble call.
+   *
    * @param input
    * @return
    */
   def bubbleSort(input: List[Int]): List[Int] = {
 
-    def bubbleUp(input: List[Int]): List[Int] = {
+    def bubble(remaining: List[Int]): (Int, List[Int]) = {
 
-      val (outputList, lastElement) = input.tail.foldLeft( (List[Int](), input.head) )( (acc, element) => {
-        val (resultList, prevElement) = acc
+      remaining match {
+        case first :: second :: tail => {
 
-        if (element > prevElement) {
-          (prevElement :: resultList, element)
-        } else {
-          (element :: resultList, prevElement)
+          if (first >= second) {
+            val (maxElement, untraversed) = bubble(first :: tail)
+            (maxElement, second :: untraversed)
+          }
+          else {
+            val (maxElement, untraversed) = bubble(second :: tail)
+            (maxElement, first :: untraversed)
+          }
         }
-
-      })
-
-      (lastElement :: outputList).reverse
-    }
-
-    input match {
-      case head :: tail => {
-        val outputList = bubbleUp(input)
-
-        if (input == outputList)
-          outputList
-        else
-          bubbleSort(outputList)
+        case maxElement :: Nil => (maxElement, Nil)
       }
-      case _ => input
     }
 
+    def sort(unsorted: List[Int], resultList: List[Int]): List[Int] = {
 
+      unsorted match {
+        case Nil => Nil
+        case oneElementList @ List(x) => oneElementList
+        case _ :: _ => {
+
+          val (maxElement, tail) = bubble(unsorted)
+
+          tail match {
+            case head :: Nil => head :: maxElement :: resultList
+            case _ :: _  => sort(tail, maxElement :: resultList)
+          }
+        }
+      }
+    }
+
+    sort(input, List[Int]())
   }
+
 
 }

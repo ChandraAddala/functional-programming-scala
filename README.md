@@ -12,7 +12,6 @@ language. This repo uses scala as its languge.
 
 3. NestedLoops: Some examples which are usually written with nested loops in imperative style but are now 
    written in a functional way.  
-   
-⋅⋅1. InsertionSort
-..2. QuickSort
-..3. BubbleSort
+  * InsertionSort
+  * QuickSort
+  * BubbleSort
