@@ -62,17 +62,35 @@ object NestedLoops {
    */
   def quickSort(input: List[Int]): List[Int] = {
 
+    /**
+     * This method divides the given list into three sublists
+     * using a random pivot.
+     * (less than pivot, equal to pivot, greater than pivot)
+     *
+     * @param list
+     * @return
+     */
+    def pivot(list: List[Int]): (List[Int], List[Int], List[Int]) = {
+      val randomPivot = list(new Random().nextInt(input.length))
+
+      list.foldLeft(List[Int](), List[Int](), List[Int]())( (acc, element) => {
+        val (lessThanPivot, equalToPivot, greaterThanPivot) = acc
+
+        element match {
+          case x if x < randomPivot => (x :: lessThanPivot, equalToPivot, greaterThanPivot)
+          case x if x > randomPivot => (lessThanPivot,      equalToPivot, x :: greaterThanPivot)
+          case x @ _                => (lessThanPivot,  x ::equalToPivot, greaterThanPivot)
+        }
+      })
+    }
+
     input match {
 
       case Nil => Nil
       case oneElementList @ List(x) => oneElementList
       case head :: tail => {
 
-        //step 1
-        val pivot = input(new Random().nextInt(input.length))
-
-        val (firstHalf, greaterThanPivot) = input.partition(_ <= pivot)
-        val (lessThanPivot, equalToPivot) = firstHalf.partition(_ < pivot)
+        val (lessThanPivot, equalToPivot, greaterThanPivot) = pivot(input)
 
         //step 2 & 3
         quickSort(lessThanPivot) :::
@@ -116,6 +134,15 @@ object NestedLoops {
    * @return
    */
   def bubbleSort(input: List[Int]): List[Int] = {
+
+    /**
+     *
+     * For input of ( 5 1 4 2 8 )
+     * returns (8, List(1 4 2 5))
+     *
+     * @param remaining
+     * @return a tuple with the maxElement in the given list and the rest of the list
+     */
 
     def bubble(remaining: List[Int]): (Int, List[Int]) = {
 
