@@ -15,3 +15,4 @@ language. This repo uses scala as its languge.
   * InsertionSort
   * QuickSort
   * BubbleSort
+  * MergeSort

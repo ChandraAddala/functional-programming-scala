@@ -138,7 +138,7 @@ object NestedLoops {
     /**
      *
      * For input of ( 5 1 4 2 8 )
-     * returns (8, List(1 4 2 5))
+     * returns (8, List(1 4 2 5)) -> First pass from the example above.
      *
      * @param remaining
      * @return a tuple with the maxElement in the given list and the rest of the list
@@ -162,6 +162,15 @@ object NestedLoops {
       }
     }
 
+    /**
+     * For a given unsorted list, accumulates results in resultList
+     * by calling bubble each time and adding the maxElement to the
+     * resultList with each call.
+     *
+     * @param unsorted
+     * @param resultList
+     * @return
+     */
     def sort(unsorted: List[Int], resultList: List[Int]): List[Int] = {
 
       unsorted match {
@@ -182,5 +191,73 @@ object NestedLoops {
     sort(input, List[Int]())
   }
 
+
+  /**
+   * Merge sort algorithm(https://en.wikipedia.org/wiki/Merge_sort)
+   *
+   * Start       : 3--4--2--1--7--5--8--9--0--6
+   * Select runs : 3--4  2  1--7  5--8--9  0--6
+   * Merge       : 2--3--4  1--5--7--8--9  0--6
+   * Merge       : 1--2--3--4--5--7--8--9  0--6
+   * Merge       : 0--1--2--3--4--5--6--7--8--9
+   *
+   * @param input
+   * @return
+   */
+  def mergeSort(input: List[Int]): List[Int] = {
+
+    /**
+     * Merges two sorted lists
+     *
+     * @param list1
+     * @param list2
+     * @return
+     */
+    def merge(list1: List[Int], list2: List[Int]): List[Int] = {
+
+      (list1, list2) match {
+        case (head :: Nil, Nil) => list1
+        case (Nil, head :: Nil) => list2
+        case (head1 :: tail1, Nil) => list1
+        case (Nil, head1 :: tail1) => list2
+        case (head1 :: tail1, head2 :: tail2) => {
+
+          if (head1 < head2) {
+            head1 :: merge(tail1, list2)
+          } else {
+            head2 :: merge(list1, tail2)
+          }
+        }
+      }
+    }
+
+    /**
+     * Performs merge sort but dividing the input list into n sublists
+     * and repeatedly merging them to produce sorted sublists until it
+     * has one final sorted list.
+     *
+     * @param list
+     * @return
+     */
+    def sort(list: List[Int]): List[Int] = {
+
+      val midPoint = if (list.size % 2 == 0)
+        list.size / 2
+      else
+        list.size / 2 + 1
+
+      list match {
+        case Nil => Nil
+        case head :: Nil => list
+        case head :: tail => {
+          val (firstPart, secondPart) = list.splitAt(midPoint)
+
+          merge( sort(firstPart), sort(secondPart) )
+        }
+      }
+    }
+
+    sort(input)
+  }
 
 }
