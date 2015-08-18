@@ -260,4 +260,61 @@ object NestedLoops {
     sort(input)
   }
 
+  /**
+   *
+   * Selection sort algorithm (https://en.wikipedia.org/wiki/Selection_sort)
+   *
+   * 64 25 12 22 11 // this is the initial, starting state of the array
+   * 11 64 25 12 22 // sorted sublist = {11}
+   * 11 12 64 25 22 // sorted sublist = {11, 12}
+   * 11 12 22 64 25 // sorted sublist = {11, 12, 22}
+   * 11 12 22 25 64 // sorted sublist = {11, 12, 22, 25}
+   * 11 12 22 25 64 // sorted sublist = {11, 12, 22, 25, 64}
+   *
+   * @param input
+   * @return
+   */
+  def selectionSort(input: List[Int]): List[Int] = {
+
+    /**
+     * Returns a tuple with the minimum element and rest of
+     * the list.
+     *
+     * @param currentMin
+     * @param remaining
+     * @return
+     */
+    def findMin(currentMin: Int, remaining: List[Int]): (Int, List[Int]) = {
+
+      remaining match {
+        case Nil => (currentMin, Nil)
+        case head :: tail => {
+
+          if (currentMin > head) {
+            val (newMin, unsorted) = findMin(head, tail)
+            (newMin, currentMin :: unsorted)
+          } else {
+            val (newMin, unsorted) = findMin(currentMin, tail)
+            (newMin, head :: unsorted)
+          }
+        }
+      }
+    }
+
+    def sort(list: List[Int]): List[Int] = {
+
+      list match {
+        case Nil => Nil
+        case head :: Nil => list
+        case head :: tail => {
+          val (min, unsorted) = findMin(head, tail)
+          min :: sort(unsorted)
+        }
+      }
+    }
+
+    sort(input)
+  }
+
+
 }
