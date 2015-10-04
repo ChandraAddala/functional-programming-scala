@@ -11,7 +11,7 @@ import scala.util.Random
  * complexity
  *
  */
-object NestedLoops {
+object SortingAlgorithms {
 
   /**
    * Insertion sort algorithm(https://en.wikipedia.org/wiki/Insertion_sort)

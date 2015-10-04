@@ -10,9 +10,10 @@ language. This repo uses scala as its languge.
 2. FoldLeft: This is a very versatile method. I put together some examples using foldLeft in here to show case its 
    versatility. Comes in very handy when you have a loop in mind.
 
-3. NestedLoops: Some examples which are usually written with nested loops in imperative style but are now 
-   written in a functional way.  
+3. SortingAlgorithms: Some sorting algorithms written in functional style. These are usually written with nested loops 
+   in imperative style but are now written in a functional way.  
   * InsertionSort
   * QuickSort
   * BubbleSort
   * MergeSort
+  * SelectionSort
