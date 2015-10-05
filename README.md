@@ -27,3 +27,4 @@ They really help with decoupling / separation of concerns.
 
 [Type Class Example](src/main/scala/examples/typeclass)
 
+In this example, if not for the Json type class, JsonWriter(present in JsonValue.scala) would need a direct/indirect dependency on Expression for it to be able to convert an Expression to a Json string representation. 
