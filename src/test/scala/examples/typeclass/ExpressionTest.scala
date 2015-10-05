@@ -1,4 +1,4 @@
-package typeclass.example
+package examples.typeclass
 
 import org.junit.runner.RunWith
 import org.scalatest.FunSuite

@@ -1,4 +1,4 @@
-package typeclass.example
+package examples.typeclass
 
 import org.json4s.jackson.JsonMethods._
 import org.junit.runner.RunWith

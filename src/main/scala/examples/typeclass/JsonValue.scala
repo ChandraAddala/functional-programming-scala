@@ -1,4 +1,4 @@
-package typeclass.example
+package examples.typeclass
 
 /**
  * Represents an ADT for Json. (Limited functionality)
@@ -13,7 +13,7 @@ case class JsonNull    ()                                extends JsonValue
 
 /**
  *
- * Converts Json object into string representation of Json
+ * Converts input into string representation of Json
  *
  */
 object JsonWriter {
@@ -40,11 +40,12 @@ object JsonWriter {
   }
 
   /**
-   * Returns a Json String
+   * Converts a given type[T: Json] to Json representation of String
+   * using type class pattern. Its sort of like an implicit adapter pattern.
    *
    * @param a
    * @tparam A
-   * @return
+   * @return a Json String
    */
   def write[A: Json](a: A): String = {
     val convertible: Json[A] = implicitly[Json[A]]

@@ -1,4 +1,4 @@
-package typeclass.example
+package examples.typeclass
 
 /**
  * Represents an ADT for an mathematical expression. (Limited functionality)

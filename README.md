@@ -17,3 +17,13 @@ language. This repo uses scala as its languge.
   * BubbleSort
   * MergeSort
   * SelectionSort
+  
+##Type Classes
+ 
+Scala has 'type classes' that supports ad-hoc polymorphism. I am not sure about the relevance of this feature to scala supporting functional programming but it looks like its a pretty widely used one. 
+Here is an example of a type class pattern using context bounds.
+
+They really help with decoupling / separation of concerns.
+
+[Type Class Example](src/main/scala/examples/typeclass)
+

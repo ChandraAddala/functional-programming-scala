@@ -1,4 +1,4 @@
-package typeclass.example
+package examples.typeclass
 
 import scala.annotation.implicitNotFound
 

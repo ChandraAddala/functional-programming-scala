@@ -1,4 +1,4 @@
-package typeclass.example
+package examples.typeclass
 
 import org.json4s._
 import org.json4s.jackson.JsonMethods._
